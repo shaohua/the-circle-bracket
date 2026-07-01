@@ -195,7 +195,6 @@
       role: name ? "img" : null,
       tabindex: name ? "0" : null,
     });
-    if (name) { var t = el("title"); t.textContent = name; g.appendChild(t); }
     var clipId = "fc-" + (clipSeq++);
     var clip = el("clipPath", { id: clipId });
     clip.appendChild(el("circle", { cx: cx, cy: cy, r: r }));
@@ -212,16 +211,6 @@
     var ring = el("circle", { cx: cx, cy: cy, r: r, class: "flag-ring" });
     if (ringColor) ring.style.stroke = ringColor;
     g.appendChild(ring);
-    if (name) {
-      var label = el("text", {
-        x: cx,
-        y: cy - r - 10,
-        class: "team-label",
-        "text-anchor": "middle",
-      });
-      label.textContent = name;
-      g.appendChild(label);
-    }
     parent.appendChild(g);
     return g;
   }

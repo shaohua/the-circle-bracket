@@ -89,23 +89,6 @@ body {
 .team {
   cursor: pointer;
 }
-.team-label {
-  fill: #efe6d5;
-  paint-order: stroke;
-  pointer-events: none;
-  stroke: rgba(12, 11, 10, 0.92);
-  stroke-linejoin: round;
-  stroke-width: 5px;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  opacity: 0;
-  transition: opacity 120ms ease;
-}
-.team:hover .team-label,
-.team:focus .team-label {
-  opacity: 1;
-}
 .advance .flag-ring {
   display: none;
 }
@@ -171,7 +154,7 @@ body {
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 10;
+  z-index: 9999;
   padding: 6px 9px;
   border: 1px solid rgba(235, 222, 196, 0.18);
   border-radius: 4px;
