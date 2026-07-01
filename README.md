@@ -65,6 +65,7 @@ Confirmed Round of 32 winners:
 - Brazil over Japan
 - Norway over Ivory Coast
 - Mexico over Ecuador
+- England over DR Congo
 - Morocco over Netherlands, on penalties
 - Canada over South Africa
 - France over Sweden

@@ -80,7 +80,7 @@ window.BRACKET_CONFIG = {
   results: {
     // 16 R32 games. Decided games drive the coloured "advancing" paths.
     r32: [
-      "br",  "no",  "mx",  null,   // Brazil, Norway, Mexico advance
+      "br",  "no",  "mx",  "en",   // Brazil, Norway, Mexico, England advance
       null,  null,  null,  null,
       null,  null,  null,  null,
       "ma",  "ca",  "fr",  "py",   // Morocco, Canada, France, Paraguay advance
