@@ -83,8 +83,9 @@ All other Round of 32 matches are still marked as undecided.
 - Federation crests were sourced from Wikimedia/English Wikipedia file paths.
 - The trophy is a local stylized SVG, not the official FIFA trophy image.
 
-## Rights
+## License
 
-This repo contains third-party flag and federation-crest assets. Check the
-upstream asset terms before reuse outside this project. No explicit open-source
-license file is included yet.
+The source code is available under the [MIT License](LICENSE).
+
+This repo also contains third-party flag and federation-crest assets. Check the
+upstream asset terms before reuse outside this project.
