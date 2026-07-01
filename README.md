@@ -1,59 +1,90 @@
-# World Cup Bracket
+# thecirclebracket.com
 
-A radial 32-team knockout bracket rendered from a configuration file, in the
-style of the classic circular World Cup graphic — flags and federation crests
-around the rim, a glowing trophy at the centre, and coloured paths tracing the
-teams that are advancing.
+A static, config-driven radial bracket for the 2026 World Cup knockout stage.
 
-## View it
+The page is plain HTML, CSS, and JavaScript. There is no framework, build step,
+server runtime, or external data fetch at render time. Team flags, federation
+crests, and the trophy SVG are bundled under `assets/`.
 
-Just open `index.html` in a browser (double-click it). Everything is bundled
-locally — no server, no internet, no build step required.
+## Run locally
 
-*(Optional)* to serve it: `python3 -m http.server --directory . 8777` then open
-<http://localhost:8777>.
+Open `index.html` directly in a browser, or serve the folder locally:
 
-## Files
+```bash
+python3 -m http.server 8777 --bind 127.0.0.1
+```
 
-| File          | Purpose                                                       |
-| ------------- | ------------------------------------------------------------- |
-| `index.html`  | Page shell. Loads `config.js` then `render.js`.               |
-| `config.js`   | **The only file you edit** — teams, seeding, and results.     |
-| `render.js`   | Reads the config and draws the radial SVG bracket.            |
-| `styles.css`  | Dark/gold theme, glow, eliminated-team styling.               |
-| `assets/`     | `flags/` (PNG), `badges/` (federation crests), `trophy.svg`.  |
+Then open:
 
-## Editing the bracket
+```text
+http://127.0.0.1:8777/index.html
+```
 
-Open `config.js`. It is fully commented. In short:
+## Deploy
 
-- **`teams`** — one entry per team: `name`, `iso` (flag code), `badge` (crest
-  filename), and an optional `accent` colour for that team's winning path.
-- **`seeds`** — the 32 team keys in ring order (clockwise from the top). Adjacent
-  pairs `(0,1), (2,3), …` are the Round-of-32 games.
-- **`results`** — the winner of each match, by team key. Use `null` for a game
-  that hasn't been played — its path stays grey and both teams stay in colour.
-  A team that **loses** a decided match is automatically greyed out.
+This project deploys as a static site.
 
-Change any value and reload — the whole bracket re-renders from the config.
+For Vercel:
 
-## Asset sources (official)
+- Framework preset: `Other`
+- Build command: leave blank
+- Output directory: `.`
 
-- **Flags** — [flagcdn.com](https://flagcdn.com) (`w320` PNG, ISO 3166 codes).
-- **Federation crests** — Wikimedia (Wikimedia Commons where the logo is
-  public-domain text/geometry; English Wikipedia for the non-free crests),
-  fetched via each federation's `Special:FilePath`.
-- **Trophy** — hand-authored stylised SVG (`assets/trophy.svg`); the real FIFA
-  trophy is trademarked, so this avoids licensing issues.
+Pushing to `main` is enough for Vercel's Git integration to redeploy.
 
-## Current Round of 32 results
+## Project Files
 
-The current `config.js` encodes these decided Round of 32 matches:
+| Path | Purpose |
+| --- | --- |
+| `index.html` | Page shell and credits block. |
+| `styles.css` | Layout, bracket styling, dark background, credit styling. |
+| `config.js` | Teams, assets, seed order, and match results. |
+| `render.js` | SVG renderer for the circular bracket. |
+| `assets/flags/` | Local flag PNGs. |
+| `assets/badges/` | Local federation crest files. |
+| `assets/trophy.svg` | Local stylized trophy artwork. |
 
-- Canada over South Africa
+## Editing Bracket Data
+
+Most changes belong in `config.js`.
+
+- `teams`: team metadata, flag code, badge file, and optional winner-path color.
+- `seeds`: the 32 teams in circular order. Adjacent pairs are Round of 32 games.
+- `results`: winner keys for each round. Use `null` for matches that are not
+  decided yet.
+
+When a result is set, the winner advances inward and the loser is dimmed. Reload
+the page after editing `config.js`.
+
+## Current Data State
+
+The current bracket order follows the supplied PDF bracket.
+
+Confirmed Round of 32 winners:
+
 - Brazil over Japan
-- Paraguay over Germany on penalties
-- Netherlands over Morocco on penalties
 - Norway over Ivory Coast
-- France over Sweden
 - Mexico over Ecuador
+- Morocco over Netherlands, on penalties
+- Canada over South Africa
+- France over Sweden
+- Paraguay over Germany, on penalties
+
+All other Round of 32 matches are still marked as undecided.
+
+## Credits
+
+- Original bracket graphic: [Emilio Sansolini](https://x.com/EmilioSansolini)
+- Repository: [shaohua/the-circle-bracket](https://github.com/shaohua/the-circle-bracket)
+
+## Asset Notes
+
+- Flags are bundled from [FlagCDN](https://flagcdn.com).
+- Federation crests were sourced from Wikimedia/English Wikipedia file paths.
+- The trophy is a local stylized SVG, not the official FIFA trophy image.
+
+## Rights
+
+This repo contains third-party flag and federation-crest assets. Check the
+upstream asset terms before reuse outside this project. No explicit open-source
+license file is included yet.

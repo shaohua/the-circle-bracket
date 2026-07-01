@@ -73,7 +73,7 @@ window.BRACKET_CONFIG = {
     "br", "jp",   "ci", "no",   "mx", "ec",   "en", "cd",   // top -> right side
     "ar", "cv",   "au", "eg",   "ch", "dz",   "co", "gh",   // right side -> bottom
     "sn", "be",   "ba", "us",   "at", "es",   "hr", "pt",   // bottom -> left side
-    "ma", "nl",   "za", "ca",   "se", "fr",   "py", "de",   // left side -> back to top
+    "ma", "nl",   "ca", "za",   "se", "fr",   "py", "de",   // left side -> back to top
   ],
 
   // Winners per round. null = not played yet.
@@ -83,7 +83,7 @@ window.BRACKET_CONFIG = {
       "br",  "no",  "mx",  null,   // Brazil, Norway, Mexico advance
       null,  null,  null,  null,
       null,  null,  null,  null,
-      "nl",  "ca",  "fr",  "py",   // Netherlands, Canada, France, Paraguay advance
+      "ma",  "ca",  "fr",  "py",   // Morocco, Canada, France, Paraguay advance
     ],
     // 8 R16 games.
     r16: [null, null, null, null, null, null, null, null],
