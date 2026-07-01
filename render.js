@@ -188,7 +188,13 @@
   var XLINK = "http://www.w3.org/1999/xlink";
   var clipSeq = 0;
   function flagCircle(parent, cx, cy, r, iso, isOut, name, ringColor) {
-    var g = el("g", { class: "team" + (isOut ? " team--out" : "") });
+    var g = el("g", {
+      class: "team" + (isOut ? " team--out" : ""),
+      "data-team-name": name || "",
+      "aria-label": name || "",
+      role: name ? "img" : null,
+      tabindex: name ? "0" : null,
+    });
     if (name) { var t = el("title"); t.textContent = name; g.appendChild(t); }
     var clipId = "fc-" + (clipSeq++);
     var clip = el("clipPath", { id: clipId });
@@ -206,6 +212,16 @@
     var ring = el("circle", { cx: cx, cy: cy, r: r, class: "flag-ring" });
     if (ringColor) ring.style.stroke = ringColor;
     g.appendChild(ring);
+    if (name) {
+      var label = el("text", {
+        x: cx,
+        y: cy - r - 10,
+        class: "team-label",
+        "text-anchor": "middle",
+      });
+      label.textContent = name;
+      g.appendChild(label);
+    }
     parent.appendChild(g);
     return g;
   }
@@ -364,4 +380,70 @@
   // optional title
   var titleEl = document.getElementById("bracket-title");
   if (titleEl && CFG.title) titleEl.textContent = CFG.title;
+
+  // ---- team hover tooltip --------------------------------------------------
+  var tooltip = document.getElementById("team-tooltip");
+  if (!tooltip) {
+    tooltip = document.createElement("div");
+    tooltip.id = "team-tooltip";
+    tooltip.className = "team-tooltip";
+    tooltip.setAttribute("role", "tooltip");
+    tooltip.setAttribute("aria-hidden", "true");
+    document.body.appendChild(tooltip);
+  }
+  if (tooltip) {
+    var activeTeam = null;
+
+    function teamFromTarget(target) {
+      return target && target.closest ? target.closest(".team[data-team-name]") : null;
+    }
+    function moveTooltip(clientX, clientY) {
+      var pad = 14;
+      var x = clientX + pad;
+      var y = clientY + pad;
+      var rect = tooltip.getBoundingClientRect();
+      if (x + rect.width > window.innerWidth - 8) x = clientX - rect.width - pad;
+      if (y + rect.height > window.innerHeight - 8) y = clientY - rect.height - pad;
+      tooltip.style.left = Math.max(8, x) + "px";
+      tooltip.style.top = Math.max(8, y) + "px";
+    }
+    function showTooltip(team, clientX, clientY) {
+      var name = team.getAttribute("data-team-name");
+      if (!name) return;
+      activeTeam = team;
+      tooltip.textContent = name;
+      tooltip.setAttribute("aria-hidden", "false");
+      tooltip.classList.add("team-tooltip--visible");
+      moveTooltip(clientX, clientY);
+    }
+    function hideTooltip() {
+      activeTeam = null;
+      tooltip.setAttribute("aria-hidden", "true");
+      tooltip.classList.remove("team-tooltip--visible");
+    }
+
+    function onTeamOver(event) {
+      var team = teamFromTarget(event.target);
+      if (team && team !== activeTeam) showTooltip(team, event.clientX, event.clientY);
+    }
+    function onTeamMove(event) {
+      if (activeTeam) moveTooltip(event.clientX, event.clientY);
+    }
+    function onTeamOut(event) {
+      var team = teamFromTarget(event.target);
+      if (team && (!event.relatedTarget || !team.contains(event.relatedTarget))) hideTooltip();
+    }
+    function onTeamFocus(event) {
+      var team = teamFromTarget(event.target);
+      if (!team) return;
+      var box = team.getBoundingClientRect();
+      showTooltip(team, box.left + box.width / 2, box.top + box.height / 2);
+    }
+
+    mount.addEventListener("mouseover", onTeamOver);
+    mount.addEventListener("mousemove", onTeamMove);
+    mount.addEventListener("mouseout", onTeamOut);
+    mount.addEventListener("focusin", onTeamFocus);
+    mount.addEventListener("focusout", hideTooltip);
+  }
 })();
