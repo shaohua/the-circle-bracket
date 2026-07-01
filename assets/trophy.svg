@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 168" fill="none">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff2c4"/>
+      <stop offset="0.38" stop-color="#f3c451"/>
+      <stop offset="0.7" stop-color="#c88a24"/>
+      <stop offset="1" stop-color="#8f5f16"/>
+    </linearGradient>
+    <linearGradient id="goldHi" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff8e0"/>
+      <stop offset="1" stop-color="#e6a836"/>
+    </linearGradient>
+    <linearGradient id="goldDeep" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e9b24a"/>
+      <stop offset="1" stop-color="#8a5a15"/>
+    </linearGradient>
+    <linearGradient id="baseGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4a3d1e"/>
+      <stop offset="0.5" stop-color="#7d5a20"/>
+      <stop offset="1" stop-color="#241d10"/>
+    </linearGradient>
+    <radialGradient id="globeGrad" cx="0.4" cy="0.35" r="0.75">
+      <stop offset="0" stop-color="#fff6d8"/>
+      <stop offset="0.55" stop-color="#f3c14c"/>
+      <stop offset="1" stop-color="#b47c22"/>
+    </radialGradient>
+  </defs>
+
+  <!-- base: two dark tiers with gold trim -->
+  <ellipse cx="70" cy="162" rx="30" ry="6" fill="#000" opacity="0.5"/>
+  <rect x="43" y="150" width="54" height="13" rx="4" fill="url(#baseGrad)"/>
+  <rect x="43" y="150" width="54" height="2.5" rx="1.2" fill="#d9b25e" opacity="0.7"/>
+  <path d="M50 138 h40 l-3.5 12 h-33 z" fill="url(#baseGrad)"/>
+  <path d="M50 138 h40 l-0.6 2 h-38.8 z" fill="#d9b25e" opacity="0.6"/>
+
+  <!-- trophy body: two figures spiralling up from the base to hold the globe -->
+  <path d="M70 46
+           C 52 54, 45 78, 57 104
+           C 62 116, 62 128, 61 138
+           L 79 138
+           C 78 128, 78 116, 83 104
+           C 95 78, 88 54, 70 46 Z"
+        fill="url(#gold)"/>
+  <!-- carved seam suggesting the two intertwined figures -->
+  <path d="M70 48 C 60 60, 57 82, 65 104 C 69 114, 69 126, 68 138"
+        stroke="#9a6a1e" stroke-width="1.2" opacity="0.55" fill="none"/>
+  <!-- left-side sheen -->
+  <path d="M67 50 C 55 60, 50 80, 60 102 C 64 112, 64 124, 63 136"
+        stroke="url(#goldHi)" stroke-width="3" stroke-linecap="round" opacity="0.8" fill="none"/>
+  <!-- collar under the globe -->
+  <rect x="60" y="40" width="20" height="9" rx="3.5" fill="url(#goldDeep)"/>
+
+  <!-- globe / world at the top -->
+  <ellipse cx="70" cy="26" rx="21" ry="17" fill="url(#globeGrad)"/>
+  <ellipse cx="70" cy="26" rx="21" ry="17" fill="none" stroke="#9a6a1e" stroke-width="1" opacity="0.5"/>
+  <path d="M49 26 h42 M53 18 h34 M53 34 h34 M70 9 v34"
+        stroke="#9a6a1e" stroke-width="0.9" opacity="0.4" fill="none"/>
+  <path d="M70 9 C 82 15, 82 37, 70 43 M70 9 C 58 15, 58 37, 70 43"
+        stroke="#9a6a1e" stroke-width="0.8" opacity="0.3" fill="none"/>
+  <ellipse cx="63" cy="20" rx="7" ry="4.5" fill="#fff8e0" opacity="0.55"/>
+</svg>

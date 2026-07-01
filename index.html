@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>World Cup Bracket</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="stage">
+    <div class="masthead"><p id="bracket-title">World Cup Bracket</p></div>
+
+    <div class="bracket-wrap">
+      <div id="bracket"><!-- SVG injected by render.js --></div>
+    </div>
+
+    <footer>Bracket &amp; results are driven by <code>config.js</code></footer>
+  </main>
+
+  <!-- config first, then renderer. No bundler / no fetch: opens from file:// -->
+  <script src="config.js"></script>
+  <script src="render.js"></script>
+</body>
+</html>
