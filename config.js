@@ -24,7 +24,7 @@
  * ============================================================================
  */
 window.BRACKET_CONFIG = {
-  title: "World Cup Bracket",
+  title: "thecirclebracket.com",
   accent: "#f4b53f", // default gold used for winner paths & the champion
 
   teams: {
@@ -42,7 +42,7 @@ window.BRACKET_CONFIG = {
     en: { name: "England",               iso: "gb-eng", badge: "en.svg" },
     cd: { name: "DR Congo",              iso: "cd",     badge: "cd.png" },
     ar: { name: "Argentina",             iso: "ar",     badge: "ar.svg" },
-    cv: { name: "Cape Verde",            iso: "cv",     badge: "cv.svg" },
+    cv: { name: "Cabo Verde",            iso: "cv",     badge: "cv.svg" },
     au: { name: "Australia",             iso: "au",     badge: "au.svg" },
     eg: { name: "Egypt",                 iso: "eg",     badge: "eg.svg" },
     // ---- bottom ----

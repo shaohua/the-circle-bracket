@@ -3,18 +3,22 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>World Cup Bracket</title>
+  <title>thecirclebracket.com</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <main class="stage">
-    <div class="masthead"><p id="bracket-title">World Cup Bracket</p></div>
+    <div class="masthead"><p id="bracket-title">thecirclebracket.com</p></div>
 
     <div class="bracket-wrap">
       <div id="bracket"><!-- SVG injected by render.js --></div>
     </div>
 
-    <footer>Bracket &amp; results are driven by <code>config.js</code></footer>
+    <footer>
+      <a href="https://x.com/EmilioSansolini" target="_blank" rel="noopener noreferrer">
+        Graph credit: Emilio Sansolini
+      </a>
+    </footer>
   </main>
 
   <!-- config first, then renderer. No bundler / no fetch: opens from file:// -->
