@@ -82,7 +82,7 @@ window.BRACKET_CONFIG = {
     r32: [
       "br",  "no",  "mx",  "en",   // Brazil, Norway, Mexico, England advance
       null,  null,  null,  null,
-      "be",  "us",  null,  null,   // Belgium, United States advance
+      "be",  "us",  "es",  null,   // Belgium, United States, Spain advance
       "ma",  "ca",  "fr",  "py",   // Morocco, Canada, France, Paraguay advance
     ],
     // 8 R16 games.
