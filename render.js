@@ -279,7 +279,11 @@
           arc(B, win.angle, node.angle, accentOf(node.winner));
         }
       }
-      dot(node.angle, B, node.winner != null ? accentOf(node.winner) : null); // output junction
+      // The final round resolves to the trophy at the centre, so it gets no
+      // output-junction dot (that dot would sit just under the trophy base).
+      if (node.key !== "final") {
+        dot(node.angle, B, node.winner != null ? accentOf(node.winner) : null); // output junction
+      }
     });
   });
 
@@ -353,7 +357,7 @@
 
   // ---- centre: trophy ------------------------------------------------------
   var trophy = el("image", {
-    x: CX - 50, y: CY - 60, width: 100, height: 120,
+    x: CX - 60, y: CY - 78, width: 120, height: 156,
     href: "assets/trophy.svg",
     preserveAspectRatio: "xMidYMid meet",
     class: "trophy",
