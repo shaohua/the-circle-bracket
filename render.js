@@ -68,6 +68,9 @@
     var t = CFG.teams[teamKey];
     return (t && t.accent) || CFG.accent;
   }
+  function liveAccentOf(teamKey) {
+    return teamKey && !eliminated[teamKey] ? accentOf(teamKey) : null;
+  }
 
   // ==========================================================================
   //  Build the match tree from config
@@ -263,7 +266,7 @@
         } else if (c.key && c.winner != null) {
           spokeWinner = c.winner;
         }
-        spoke(c.angle, childR, B, spokeWinner ? accentOf(spokeWinner) : null);
+        spoke(c.angle, childR, B, liveAccentOf(spokeWinner));
         dot(c.angle, B, null); // junction where the spoke meets this arc
       });
       // connecting arc along the ring, split at the midpoint so only the
@@ -276,13 +279,13 @@
           var win = c0.winner === node.winner ? c0 : c1;
           var lose = win === c0 ? c1 : c0;
           arc(B, lose.angle, node.angle, null);
-          arc(B, win.angle, node.angle, accentOf(node.winner));
+          arc(B, win.angle, node.angle, liveAccentOf(node.winner));
         }
       }
       // The final round resolves to the trophy at the centre, so it gets no
       // output-junction dot (that dot would sit just under the trophy base).
       if (node.key !== "final") {
-        dot(node.angle, B, node.winner != null ? accentOf(node.winner) : null); // output junction
+        dot(node.angle, B, liveAccentOf(node.winner)); // output junction
       }
     });
   });
@@ -290,8 +293,8 @@
   // champion's spoke into the trophy — only once a champion exists
   var finalNode = levels[ROUNDS.length - 1][0];
   if (finalNode.winner) {
-    spoke(finalNode.angle, finalR, CENTER_R, accentOf(finalNode.winner));
-    dot(finalNode.angle, CENTER_R, accentOf(finalNode.winner));
+    spoke(finalNode.angle, finalR, CENTER_R, liveAccentOf(finalNode.winner));
+    dot(finalNode.angle, CENTER_R, liveAccentOf(finalNode.winner));
   }
 
   // ---- junction dots (drawn above the lines) -------------------------------
@@ -309,8 +312,8 @@
   // ---- advancing flags: a winner's flag hops inward to where it plays next -
   // The winner of a round-r match advances to the NEXT ring in (ROUNDS[r+1]),
   // i.e. the ring where its following match's arc sits. These flags mark a
-  // completed winning step, so they stay in colour even if that team is later
-  // eliminated; the next match's grey connector shows where the run ended.
+  // completed winning step. If that team is later eliminated, its advanced
+  // flag copies dim along with the outer-ring team.
   // The champion is represented by the trophy, so the final round advances no flag.
   levels.forEach(function (nodes, r) {
     if (r + 1 >= ROUNDS.length) return;
@@ -320,7 +323,7 @@
       var team = CFG.teams[node.winner];
       if (!team) return;
       var pos = toXY(node.angle, flagR);
-      flagCircle(gAdvance, pos.x, pos.y, ADV_FLAG_R, team.iso, false,
+      flagCircle(gAdvance, pos.x, pos.y, ADV_FLAG_R, team.iso, !!eliminated[node.winner],
                  team.name, accentOf(node.winner));
     });
   });
