@@ -86,7 +86,7 @@ window.BRACKET_CONFIG = {
       "ma",  "ca",  "fr",  "py",   // Morocco, Canada, France, Paraguay advance
     ],
     // 8 R16 games.
-    r16: ["no", "en", null, null, null, "es", "ma", "fr"],
+    r16: ["no", "en", null, null, "be", "es", "ma", "fr"],
     // 4 QF games.
     qf: [null, null, null, null],
     // 2 SF games.
