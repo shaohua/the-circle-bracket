@@ -88,7 +88,7 @@ window.BRACKET_CONFIG = {
     // 8 R16 games.
     r16: ["no", "en", "ar", "ch", "be", "es", "ma", "fr"],
     // 4 QF games.
-    qf: [null, null, null, "fr"],
+    qf: ["en", "ar", "es", "fr"],
     // 2 SF games.
     sf: [null, null],
     // Champion. null = tournament still in progress.
