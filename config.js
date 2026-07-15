@@ -90,7 +90,7 @@ window.BRACKET_CONFIG = {
     // 4 QF games.
     qf: ["en", "ar", "es", "fr"],
     // 2 SF games.
-    sf: [null, null],
+    sf: [null, "es"],
     // Champion. null = tournament still in progress.
     final: null,
   },
